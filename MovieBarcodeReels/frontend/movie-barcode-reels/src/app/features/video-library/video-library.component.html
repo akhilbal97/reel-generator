@@ -1,0 +1,43 @@
+<div class="page-header">
+  <h1>Video Library</h1>
+  <p>Browse and download generated reels.</p>
+</div>
+
+<div class="grid-2">
+  <section class="card">
+    <h2 class="card-title">All Videos</h2>
+    @if (videos().length === 0) {
+      <div class="empty-state">
+        <mat-icon>video_library</mat-icon>
+        <p>No generated videos yet.</p>
+      </div>
+    } @else {
+      <ul class="video-list">
+        @for (video of videos(); track video.id) {
+          <li [class.active]="selectedVideoUrl()?.includes(video.downloadUrl)">
+            <button type="button" class="video-item" (click)="preview(video)">
+              <strong>{{ video.movieTitle }}</strong>
+              <span>{{ video.createdDate | date: 'medium' }} · {{ formatDuration(video.durationMs) }}</span>
+              @if (video.usedPlaceholder) {
+                <span class="badge">Placeholder</span>
+              }
+            </button>
+            <a mat-stroked-button [href]="downloadUrl(video)" download>Download</a>
+          </li>
+        }
+      </ul>
+    }
+  </section>
+
+  <section class="card">
+    <h2 class="card-title">Preview</h2>
+    @if (selectedVideoUrl()) {
+      <video class="video-preview" controls [src]="selectedVideoUrl()!"></video>
+    } @else {
+      <div class="empty-state">
+        <mat-icon>play_circle</mat-icon>
+        <p>Select a video to preview.</p>
+      </div>
+    }
+  </section>
+</div>

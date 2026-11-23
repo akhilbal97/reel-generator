@@ -1,0 +1,70 @@
+<div class="page-header">
+  <h1>{{ isEdit() ? 'Edit Movie' : 'New Movie' }}</h1>
+  <p>Configure movie metadata and assets.</p>
+</div>
+
+<section class="card">
+  <form [formGroup]="form" class="form-grid">
+    <mat-form-field appearance="outline">
+      <mat-label>Movie Title</mat-label>
+      <input matInput formControlName="title" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Release Year</mat-label>
+      <input matInput type="number" formControlName="year" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-row">
+      <mat-label>Trivia</mat-label>
+      <textarea matInput rows="4" formControlName="trivia"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Genre</mat-label>
+      <mat-select formControlName="genre">
+        @for (genre of genres; track genre) {
+          <mat-option [value]="genre">{{ genre }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Difficulty</mat-label>
+      <mat-select formControlName="difficulty">
+        @for (level of difficulties; track level) {
+          <mat-option [value]="level">{{ level }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <div class="upload-row full-row">
+      <label class="upload-label">
+        <mat-icon>image</mat-icon>
+        Upload Barcode
+        <input type="file" accept=".png,.jpg,.jpeg" hidden (change)="onBarcodeSelected($event)" />
+      </label>
+      <label class="upload-label">
+        <mat-icon>music_note</mat-icon>
+        Upload Audio
+        <input type="file" accept=".mp3" hidden (change)="onAudioSelected($event)" />
+      </label>
+    </div>
+
+    @if (barcodePreviewUrl) {
+      <div class="preview-box full-row">
+        <img [src]="barcodePreviewUrl" alt="Barcode preview" />
+      </div>
+    }
+
+    <div class="actions full-row">
+      <a mat-stroked-button routerLink="/movies">Cancel</a>
+      <button mat-flat-button color="primary" [disabled]="saving()" (click)="save()">
+        @if (saving()) {
+          <mat-spinner diameter="20" />
+        }
+        Save Movie
+      </button>
+    </div>
+  </form>
+</section>

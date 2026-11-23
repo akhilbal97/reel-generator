@@ -1,0 +1,226 @@
+@use '@angular/material' as mat;
+
+:root {
+  --app-bg: #0f1117;
+  --app-surface: #161922;
+  --app-surface-elevated: #1c2030;
+  --app-border: #2a2f3d;
+  --app-text: #eef0f4;
+  --app-muted: #8b92a5;
+  --app-accent: #6366f1;
+  --app-accent-hover: #818cf8;
+  --app-danger: #ef4444;
+  --app-success: #22c55e;
+  --app-radius: 12px;
+}
+
+html {
+  color-scheme: dark;
+
+  @include mat.theme(
+    (
+      color: (
+        theme-type: dark,
+        primary: mat.$violet-palette,
+        tertiary: mat.$azure-palette,
+      ),
+      typography: (
+        plain-family: Inter,
+        brand-family: Inter,
+      ),
+      density: 0,
+    )
+  );
+
+  @include mat.theme-overrides(
+    (
+      surface: #161922,
+      on-surface: #eef0f4,
+      surface-container: #1c2030,
+      surface-container-high: #242938,
+      on-surface-variant: #b4bac8,
+      outline: #2a2f3d,
+      outline-variant: #353b4a,
+    )
+  );
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background: var(--app-bg);
+  color: var(--app-text);
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+strong {
+  color: var(--app-text);
+}
+
+p {
+  color: var(--app-muted);
+  line-height: 1.6;
+}
+
+.page-header {
+  margin-bottom: 32px;
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  p {
+    margin: 8px 0 0;
+    font-size: 1rem;
+  }
+}
+
+.card {
+  background: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: var(--app-radius);
+  padding: 24px;
+  color: var(--app-text);
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--app-text);
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 900px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+// Material form fields
+.mat-mdc-form-field {
+  width: 100%;
+  --mdc-outlined-text-field-label-text-color: var(--app-muted);
+  --mdc-outlined-text-field-input-text-color: var(--app-text);
+  --mdc-outlined-text-field-outline-color: var(--app-border);
+  --mdc-outlined-text-field-hover-outline-color: #4a5163;
+  --mdc-outlined-text-field-focus-outline-color: var(--app-accent);
+  --mdc-outlined-text-field-focus-label-text-color: var(--app-accent);
+  --mdc-outlined-text-field-caret-color: var(--app-accent);
+  --mat-form-field-focus-select-arrow-color: var(--app-accent);
+  --mat-select-enabled-trigger-text-color: var(--app-text);
+  --mat-select-enabled-arrow-color: var(--app-muted);
+  --mat-select-placeholder-text-color: var(--app-muted);
+}
+
+.mat-mdc-input-element,
+.mat-mdc-select-value-text,
+textarea.mat-mdc-input-element {
+  color: var(--app-text) !important;
+}
+
+.mat-mdc-form-field-hint,
+.mat-mdc-form-field-error {
+  color: var(--app-muted);
+}
+
+// Select dropdown panel
+.mat-mdc-select-panel {
+  background: var(--app-surface-elevated) !important;
+}
+
+.mat-mdc-option {
+  color: var(--app-text) !important;
+
+  &:hover:not(.mdc-list-item--disabled),
+  &.mat-mdc-option-active {
+    background: rgba(99, 102, 241, 0.12) !important;
+  }
+}
+
+// Table
+.mat-mdc-table {
+  background: transparent;
+  color: var(--app-text);
+}
+
+.mat-mdc-header-cell {
+  color: var(--app-muted) !important;
+  border-bottom-color: var(--app-border) !important;
+}
+
+.mat-mdc-cell {
+  color: var(--app-text) !important;
+  border-bottom-color: var(--app-border) !important;
+}
+
+.mat-mdc-row:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+// Navigation list
+.mat-mdc-nav-list .mat-mdc-list-item {
+  color: var(--app-text);
+
+  .mdc-list-item__primary-text {
+    color: var(--app-text);
+  }
+
+  .mat-icon {
+    color: var(--app-muted);
+  }
+}
+
+// Buttons
+.mat-mdc-outlined-button:not(:disabled) {
+  color: var(--app-text);
+  border-color: var(--app-border);
+}
+
+.mat-mdc-icon-button:not(:disabled) {
+  color: var(--app-muted);
+}
+
+// Shell / layout
+.mat-toolbar,
+.mat-drawer,
+.mat-mdc-card,
+.mat-mdc-dialog-container {
+  background: var(--app-surface) !important;
+  color: var(--app-text) !important;
+}
+
+.mat-drawer-container {
+  background: var(--app-bg);
+  color: var(--app-text);
+}
+
+.mat-mdc-snack-bar-container {
+  --mdc-snackbar-container-color: var(--app-surface-elevated);
+  --mdc-snackbar-supporting-text-color: var(--app-text);
+}
+
+// Progress spinner on dark bg
+.mat-mdc-progress-spinner {
+  --mdc-circular-progress-active-indicator-color: var(--app-accent);
+}

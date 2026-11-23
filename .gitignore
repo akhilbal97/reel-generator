@@ -1,0 +1,27 @@
+# Dependencies and build output
+node_modules/
+dist/
+.angular/
+bin/
+obj/
+.vs/
+
+# Local data and generated media
+*.db
+*.db-shm
+*.db-wal
+MovieBarcodeReels/assets/generated/*
+!MovieBarcodeReels/assets/generated/.gitkeep
+MovieBarcodeReels/assets/uploads/*
+!MovieBarcodeReels/assets/uploads/.gitkeep
+
+# Secrets and local config
+.env
+.env.*
+*.user
+*.suo
+
+# OS and editor
+.DS_Store
+Thumbs.db
+.idea/
