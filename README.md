@@ -15,13 +15,16 @@ A full-stack MVP for creating Instagram Reels and YouTube Shorts from movie barc
 ## Project Structure
 
 ```
-MovieBarcodeReels/
-├── frontend/movie-barcode-reels/   # Angular app
-├── backend/MovieBarcodeReels.Api/  # ASP.NET Core API
-├── assets/
-│   ├── uploads/                    # Uploaded barcode images & audio
-│   └── generated/                  # Generated MP4 reels
-└── README.md
+.
+├── README.md
+├── assets/                         # Source barcode images
+├── assets2/                        # Additional barcode images
+└── MovieBarcodeReels/
+    ├── frontend/movie-barcode-reels/   # Angular app
+    ├── backend/MovieBarcodeReels.Api/  # ASP.NET Core API
+    └── assets/
+        ├── uploads/                    # Uploaded barcode images & audio
+        └── generated/                  # Generated MP4 reels
 ```
 
 ## Prerequisites
